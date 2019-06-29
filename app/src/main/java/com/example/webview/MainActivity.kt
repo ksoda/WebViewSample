@@ -13,11 +13,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val webView: WebView = findViewById(R.id.webView)
 
-        webView.setWebViewClient(object : WebViewClient() {
+        webView.webViewClient = object : WebViewClient() {
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 return false
             }
-        })
+        }
 
         webView.loadUrl("http://10.0.2.2:5000/")
     }
