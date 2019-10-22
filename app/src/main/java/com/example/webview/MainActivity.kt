@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        webView.loadUrl("http://10.0.2.2:5000/")
+        // webView.loadUrl("http://10.0.2.2:5000/")
+        webView.loadUrl("file:///android_asset/index.html")
+
     }
 }
