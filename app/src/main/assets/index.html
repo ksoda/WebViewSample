@@ -3,8 +3,23 @@
   <body>
     <form>
       <input type="text" />
+      <textarea> </textarea>
       <input type="text" />
+      <textarea> </textarea>
       <input type="submit" />
     </form>
+    <input
+      type="button"
+      value="Say hello"
+      onClick="showAndroidToast('Hello Android!')"
+    />
+    <a href="https://example.com">example</a>
+    <a href="https://google.com">google</a>
+
+    <script type="text/javascript">
+      function showAndroidToast(toast) {
+        Android.showToast(toast);
+      }
+    </script>
   </body>
 </html>
