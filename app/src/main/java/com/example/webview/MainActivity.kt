@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.inputmethod.BaseInputConnection
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputConnection
 import android.webkit.JavascriptInterface
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -16,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val webView: WebView = findViewById(R.id.webView)
+        val webView: CustomWebView = findViewById(R.id.webView)
         webView.settings.javaScriptEnabled = true
         webView.webViewClient = MyWebViewClient()
         webView.addJavascriptInterface(WebAppInterface(this), "Android")
@@ -24,6 +28,20 @@ class MainActivity : AppCompatActivity() {
         // webView.loadUrl("http://10.0.2.2:5000/")
         webView.loadUrl("file:///android_asset/index.html")
 
+    }
+
+}
+
+class CustomWebView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : WebView(context, attrs, defStyleAttr) {
+    override fun onCreateInputConnection(outAttrs: EditorInfo): InputConnection {
+        val inputConnection = BaseInputConnection(this, false)
+        outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE
+        outAttrs.inputType = EditorInfo.TYPE_CLASS_NUMBER
+        return inputConnection
     }
 }
 
